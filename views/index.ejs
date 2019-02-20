@@ -1,0 +1,17 @@
+<% include partials/header %>
+    <section class="page home">
+      <div class="intro">
+        <p>Personal</p>
+        <h1>Phone<br />book</h1>
+        <div class="action">
+          <% if(user) { %>
+            <a href="/phonebook" class="btn btn-phonebook">Phonebook</a>
+            <a href="/logout" class="btn btn-logout">Logout?</a>
+          <% } else { %>
+            <a href="/login" class="btn btn-login">Login</a>
+            <a href="/register" class="btn btn-register">Register</a>
+          <% } %>
+        </div>
+      </div>
+    </section>
+<% include partials/footer %>

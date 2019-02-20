@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  background: #ecc800;
+}
+
+.alert {
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  color: #fff;
+}
+
+.alert-success {
+  background: #4CAF50;
+}
+
+.alert-error {
+  background: #F44336;
+}
+
+.btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 10px 15px;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.btn-submit {
+  cursor: pointer;
+  padding: 15px 35px;
+  margin: 0;
+  font-size: 18px;
+}
+
+.btn-alternate {
+  font-size: 18px;
+  background: none;
+  color: #000;
+}
+
+.btn-logout {
+  margin: 0;
+}
+
+.page {
+  width: 640px;
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+.intro p {
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 900;
+  font-size: 36px;
+}
+
+.intro h1 {
+  font-size: 96px;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.intro .action {
+  margin-top: 25px;
+}
+
+.title h2 {
+  font-size: 48px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.form-phonebook {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.form-phonebook>* {
+  flex: 1 1 100%;
+}
+
+.form-phonebook input {
+  margin: 0;
+  border: solid 2px #000;
+}
+
+.form-phonebook span {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-weight: 900;
+  padding: 0 15px;
+  font-size: 36px;
+}
+
+.form-phonebook input[name="name"],
+.form-phonebook button[type="submit"] {
+  border-top: none;
+  flex-basis: 100%;
+}
+
+.form-phonebook span {
+  flex: 0 0 20px;
+}
+
+.form-phonebook input[name="code"] {
+  flex: 0 0 40px;
+  border-right: none;
+}
+
+.form-phonebook input[name="phone"] {
+  flex-basis: calc(100% / 3);
+}
+
+input {
+  display: block;
+  border: none;
+  font-size: 22px;
+  padding: 15px;
+  margin: 15px 0;
+}
+
+input[name=code],
+input[name=phone] {
+  display: inline;
+}
+
+.phonebook li {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.phonebook li h5 {
+  background: #000;
+  font-size: 18px;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 5px 15px;
+}
+
+.phonebook {
+  margin: 25px 0;
+}
+
+.phonebook li p {
+  background: #fff;
+  padding: 10px 15px;
+  border: solid 2px #000;
+  font-family: monospace;
+  font-size: 18px;
+}
+
+.phonebook li form {
+  position: absolute;
+  right: 10px;
+  top: 3px;
+  opacity: 1;
+}
+
+.phonebook li form button {
+  opacity: 0;
+  font-size: 11px;
+  color: #fff;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.phonebook li:hover form button {
+  opacity: 1;
+}
+
+.footer {
+  width: 640px;
+  margin: 0 auto;
+  border-top: solid 8px #000;
+  padding-top: 10px;
+}

@@ -1,0 +1,18 @@
+<% include partials/header %>
+<section class="page login">
+  <div class="login-area">
+    <div class="title">
+      <h2>Login</h2>
+    </div>
+    <% if(error.length) { %>
+      <p class="alert alert-error"><%= error %></p>
+    <% } %>
+    <form class="form form-login" action="/login" method="POST">
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" />
+      <button class="btn btn-submit" type="submit">Login</button>
+      <a class="btn btn-alternate" href="/register">Register</a>
+    </form>
+  </div>
+</section>
+<% include partials/footer %>

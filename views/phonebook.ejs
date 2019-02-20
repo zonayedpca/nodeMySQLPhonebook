@@ -1,0 +1,35 @@
+<% include partials/header %>
+<section class="page login">
+  <div class="login-area">
+    <div class="title">
+      <h2>Phonebook</h2>
+    </div>
+    <% if(info.length) { %>
+      <p class="alert alert-success"><%= info %></p>
+    <% } %>
+    <form class="form form-phonebook" action="/phonebook" method="POST">
+      <span>+</span><input type="number" name="code" min="000" max="999" placeholder="Code" required />
+      <input type="number" name="phone" placeholder="Phone" required />
+      <input type="text" name="name" placeholder="Name" required />
+      <button class="btn btn-submit" type="submit">Add</button>
+    </form>
+    <div class="phonebook">
+      <ul>
+        <% if(!result.length) { %>
+          <p class="alert alert-error">No Phone Number Found!</p>
+        <% } %>
+        <% result.map(oneResult => { %>
+          <li>
+            <h5><%= oneResult.name %></h5>
+            <p><%= oneResult.phone %></p>
+            <form action="/phonebook/<%= oneResult.id %>?_method=DELETE" method="POST">
+              <button type="submit">delete</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+    <a href="/logout" class="btn btn-logout">Logout?</a>
+  </div>
+</section>
+<% include partials/footer %>
