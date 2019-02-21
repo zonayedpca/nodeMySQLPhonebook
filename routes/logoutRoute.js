@@ -4,7 +4,7 @@ const { isAuthenticate } = require('../middlewares'),
 const logoutRoute = app => {
   app.get('/logout', isAuthenticate, (req, res) => {
     req.session.destroy(err => {
-      if(err) console.log(err);
+      if(err) return res.redirect('/phonebook');
       else {
         res.clearCookie('pid');
         return res.redirect('/login');

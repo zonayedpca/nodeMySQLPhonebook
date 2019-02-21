@@ -160,6 +160,20 @@ input[name=phone] {
   padding: 5px 15px;
 }
 
+.phonebook li .edit-link {
+  background: #fff;
+  opacity: 0;
+  font-size: 14px;
+  padding: 1px 7px;
+  color: #000;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.phonebook li:hover .edit-link {
+  opacity: 1;
+}
+
 .phonebook {
   margin: 25px 0;
 }

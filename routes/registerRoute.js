@@ -15,27 +15,27 @@ const registerRoute = app => {
       WHERE username = ?;
     `;
     connection.query(checkUserQuery, username, (err, result) => {
-      if(err) console.log(err);
+      if(err) return res.redirect('/register');
       else {
         if(result.length && result[0].username) {
           return res.redirect('/login');
         } else {
           if(username && password) {
             bcrypt.hash(password, 12, function(err, hashedPassword) {
-              if(err) console.log(err);
+              if(err) return res.redirect('/register');
               else {
                 const createQuery = `
                   INSERT INTO users(username, password)
                   VALUES('${username}', '${hashedPassword}');
                 `;
                 connection.query(createQuery, (err, result) => {
-                  if(err) console.log(err);
+                  if(err) return res.redirect('/login');
                   else {
                     const findUser = `
                       SELECT id FROM users WHERE username = '${username}';
                     `;
                     connection.query(findUser, (err, result) => {
-                      if(err) console.log(err);
+                      if(err) return res.redirect('/login');
                       else {
                         req.session.userId = result[0].id;
                         req.flash('info', `Welcome to Phonebook`);

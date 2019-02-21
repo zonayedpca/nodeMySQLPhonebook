@@ -15,11 +15,11 @@ const loginRoute = app => {
       WHERE username = ?;
     `;
     connection.query(checkUserQuery, username, (err, result) => {
-      if(err) console.log(err);
+      if(err) return res.redirect('/login');
       else {
         if(result.length && result[0].username) {
           bcrypt.compare(password, result[0].password, (err, correct) => {
-            if(err) console.log(err);
+            if(err) return res.redirect('/login');
             else {
               if(correct) {
                 req.session.userId = result[0].id;

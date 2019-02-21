@@ -1,0 +1,15 @@
+<% include partials/header %>
+<section class="page edit">
+  <div class="edit-area">
+    <div class="title">
+      <h2>Edit</h2>
+    </div>
+    <form class="form form-phonebook" action="/phonebook/<%= data.id %>?_method=PUT" method="POST">
+      <span>+</span><input type="number" name="code" min="000" max="999" value="<%= data.code %>" required />
+      <input type="number" name="phone" value="<%= data.phone %>" required />
+      <input type="text" name="name" value="<%= data.name %>" required />
+      <button class="btn btn-submit" type="submit">Update</button>
+    </form>
+  </div>
+</section>
+<% include partials/footer %>

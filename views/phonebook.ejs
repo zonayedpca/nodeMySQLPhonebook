@@ -20,7 +20,7 @@
         <% } %>
         <% result.map(oneResult => { %>
           <li>
-            <h5><%= oneResult.name %></h5>
+            <h5><%= oneResult.name %> <a class="edit-link" href="/phonebook/<%= oneResult.id %>/edit">edit</a></h5>
             <p><%= oneResult.phone %></p>
             <form action="/phonebook/<%= oneResult.id %>?_method=DELETE" method="POST">
               <button type="submit">delete</button>
