@@ -10,6 +10,8 @@ const expressMiddlewares = (express, app) => {
     name: 'pid',
     resave: false,
     saveUninitialized: false,
+    secure: true,
+    httpOnly: true,
     secret: 'phonebooksecret',
     cookie: {
       maxAge: 1000 * 60 * 60 * 2
