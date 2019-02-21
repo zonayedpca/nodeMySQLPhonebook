@@ -12,7 +12,9 @@ const expressMiddlewares = (express, app) => {
     saveUninitialized: false,
     secret: 'phonebooksecret',
     cookie: {
-      maxAge: 1000 * 60 * 60 * 2
+      maxAge: 1000 * 60 * 60 * 2,
+      secure: true,
+      httpOnly: true
     }
   }));
 
