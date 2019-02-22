@@ -7,51 +7,41 @@ const registerRoute = app => {
     res.render('register');
   });
 
-  app.post('/register', isGuest, (req, res) => {
+  app.post('/register', isGuest, async(req, res) => {
     const { username, password } = req.body;
     const checkUserQuery = `
       SELECT username
       FROM users
       WHERE username = ?;
     `;
-    connection.query(checkUserQuery, username, (err, result) => {
-      if(err) return res.redirect('/register');
-      else {
-        if(result.length && result[0].username) {
-          return res.redirect('/login');
+    try {
+      const result = await connection.query(checkUserQuery, username);
+      if(result.length && result[0].username) {
+        return res.redirect('/login');
+      } else {
+        if(username && password) {
+          const hashedPassword = await bcrypt.hash(password, 12);
+          const createQuery = `
+            INSERT INTO users
+            SET username = ?, password = ?;
+          `;
+          const result = await connection.query(createQuery, [username, hashedPassword]);
+          const findUser = `
+            SELECT id
+            FROM users
+            WHERE username = ?;
+          `;
+          const user = await connection.query(findUser, [username]);
+          req.session.userId = user[0].id;
+          req.flash('info', `Welcome to Phonebook`);
+          return res.redirect('/phonebook');
         } else {
-          if(username && password) {
-            bcrypt.hash(password, 12, function(err, hashedPassword) {
-              if(err) return res.redirect('/register');
-              else {
-                const createQuery = `
-                  INSERT INTO users(username, password)
-                  VALUES('${username}', '${hashedPassword}');
-                `;
-                connection.query(createQuery, (err, result) => {
-                  if(err) return res.redirect('/login');
-                  else {
-                    const findUser = `
-                      SELECT id FROM users WHERE username = '${username}';
-                    `;
-                    connection.query(findUser, (err, result) => {
-                      if(err) return res.redirect('/login');
-                      else {
-                        req.session.userId = result[0].id;
-                        req.flash('info', `Welcome to Phonebook`);
-                        return res.redirect('/phonebook');
-                      }
-                    });
-                  }
-                });
-              }
-            });
-          } else {
-            return res.redirect('/register');
-          }
+          return res.redirect('/register');
         }
-      };
-    });
+      }
+    } catch(e) {
+      return res.redirect('/register');
+    }
   });
 }
 

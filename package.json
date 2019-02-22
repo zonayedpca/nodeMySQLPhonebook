@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devstart": "nodemon app.js",
+    "dev": "nodemon app.js",
     "start": "node app.js"
   },
   "keywords": [],
@@ -20,6 +20,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "method-override": "^3.0.0",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "util": "^0.11.1"
   }
 }
