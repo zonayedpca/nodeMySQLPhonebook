@@ -1,7 +1,7 @@
 const expressConfigs = require('./expressConfigs'),
       expressMiddlewares = require('./expressMiddlewares');
       require('dotenv').config();
-      
+
 module.exports = {
   host: process.env.HOST,
   user: process.env.USER,
