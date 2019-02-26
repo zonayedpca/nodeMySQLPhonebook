@@ -1,13 +1,10 @@
 const { buildSchema } = require('graphql');
 
 const schema = buildSchema(`
-  type Token {
-    token: String
-  }
-
   type Login {
     id: ID
     username: String
+    token: String
   }
 
   type PhoneBook {
@@ -17,15 +14,14 @@ const schema = buildSchema(`
   }
 
   type Query {
-    getToken(username: String!, password: String!): Token
     login(username: String!, password: String!): Login!
     phonebook: [PhoneBook!]
-    phone(id: ID! userId: Int!): PhoneBook
+    phone(id: ID!): PhoneBook
   }
 
   type Mutation {
     register(username: String!, password: String!): Login!
-    newphone(name: String!, phone: String!, userId: ID!): Boolean!
+    newphone(name: String!, phone: String!): Boolean!
     updatephone(id: ID!, userId: ID!, name: String!, phone: String!): Boolean!
     logout: Login
   }

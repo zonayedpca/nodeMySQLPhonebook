@@ -1,6 +1,5 @@
 const util = require('util'),
       bcrypt = require('bcrypt'),
-      getToken = require('./token'),
       login = require('./login'),
       register = require('./register'),
       phonebook = require('./phonebook'),
@@ -10,7 +9,6 @@ const util = require('util'),
       logout = require('./logout');
 
 const rootValue = {
-  getToken,
   login,
   register,
   phonebook,

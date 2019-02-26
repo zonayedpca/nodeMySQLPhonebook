@@ -3,25 +3,9 @@ const express = require('express'),
       { expressConfigs, expressMiddlewares } = require('./config'),
       { rootRoute, loginRoute, registerRoute, phonebookRoute, logoutRoute } = require('./routes'),
       { schema, rootValue } = require('./graphql'),
-      jwt = require('jsonwebtoken');
+      { isAuth } = require('./middlewares');
 
 const app = express();
-
-const isAuth = (req, res, next) => {
-  const token = req.get('Authorization');
-  if(token) {
-    const originalToken = token.split(' ')[1];
-    try {
-      const decoded = jwt.verify(originalToken, 'secretkey');
-      req.isAuth = true;
-      req.userId = decoded.id;
-      return next();
-    } catch(e) {
-      return next();
-    }
-  }
-  next();
-}
 
 app.use(isAuth);
 

@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt'),
+      jwt = require('jsonwebtoken'),
       { connection } = require('../../database');
 
 const register = async({username, password}) => {

@@ -1,7 +1,9 @@
 const isAuthenticate = require('./isAuthenticate'),
-      isGuest = require('./isGuest');
+      isGuest = require('./isGuest'),
+      isAuth = require('./isAuthToken');
 
 module.exports = {
   isAuthenticate,
-  isGuest
+  isGuest,
+  isAuth
 }

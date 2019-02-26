@@ -1,3 +1,5 @@
+const { getToken } = require('../graphql/utils');
+
 const rootRoute = app => {
   app.get('/', (req, res) => {
     const { userId: user } = req.session;

@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt'),
+      { getToken } = require('../utils'),
       { connection } = require('../../database');
 
 const login = async({username, password}) => {
@@ -7,21 +8,28 @@ const login = async({username, password}) => {
     FROM users
     WHERE username = ?;
   `;
-  const getLogin = await connection.query(query, username);
-  if(getLogin.length && getLogin[0].username) {
-    const match = await bcrypt.compare(password, getLogin[0].password);
+  const theUser = await connection.query(query, username);
+  if(theUser.length && theUser[0].username) {
+    const match = await bcrypt.compare(password, theUser[0].password);
     if(match) {
-      return getLogin[0];
+      const user = {
+        id: theUser[0].id,
+        username: theUser[0].username
+      };
+      const token = getToken(user);
+      return {
+        id: theUser[0].id,
+        username: theUser[0].username,
+        token
+      }
     } else {
       return {
-        id: null,
-        username: null
+        token: null
       }
     }
   } else {
     return {
-      id: null,
-      username: null
+      token: null
     }
   }
 }

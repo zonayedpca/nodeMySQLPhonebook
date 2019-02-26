@@ -1,6 +1,6 @@
 const { connection } = require('../../database');
 
-const newphone = async({name, phone, userId}) => {
+const newphone = async({name, phone}, {userId}) => {
   const query = `
     INSERT INTO phones
     SET name = ?, phone = ?, user_id = ?;
