@@ -3,13 +3,14 @@ const express = require('express'),
       { expressConfigs, expressMiddlewares } = require('./config'),
       { rootRoute, loginRoute, registerRoute, phonebookRoute, logoutRoute } = require('./routes'),
       { schema, rootValue } = require('./graphql'),
-      { isAuth } = require('./middlewares');
+      { isAuth } = require('./middlewares'),
+      cors = require('cors');
 
 const app = express();
 
 app.use(isAuth);
 
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', cors(), graphqlHTTP({
   schema,
   rootValue,
   graphiql: true
