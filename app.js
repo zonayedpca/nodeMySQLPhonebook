@@ -1,8 +1,20 @@
 const express = require('express'),
       { expressConfigs, expressMiddlewares } = require('./config'),
-      { rootRoute, loginRoute, registerRoute, phonebookRoute, logoutRoute } = require('./routes');
+      { rootRoute, loginRoute, registerRoute, phonebookRoute, logoutRoute } = require('./routes'),
+      cors = require('cors'),
+      graphqlHTTP = require('express-graphql'),
+      { schema, rootValue } = require('./graphql'),
+      { isAuth } = require('./middlewares');
 
 const app = express();
+
+app.use(isAuth);
+app.use(cors());
+app.use('/graphql', cors(), graphqlHTTP({
+  schema,
+  rootValue,
+  graphiql: true
+}));
 
 expressConfigs(app);
 expressMiddlewares(express, app);
